@@ -5,6 +5,8 @@ import com.larecette.product.query.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class ProductService {
 
@@ -15,7 +17,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product findById(Long id) {
+    public Product findById(UUID id) {
         Product product = productRepository.findById(id).orElse(null);
         return product;
     }

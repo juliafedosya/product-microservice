@@ -28,6 +28,7 @@ spring-test/test-output/
 
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
+
 !**/src/test/**
 
 ### IntelliJ IDEA ###
@@ -41,3 +42,6 @@ out/
 .gradle
 build/
 target/
+
+### MacOS files ###
+.DS_Store

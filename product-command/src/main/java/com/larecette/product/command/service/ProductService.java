@@ -6,6 +6,8 @@ import com.larecette.product.command.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class ProductService {
 
@@ -21,7 +23,7 @@ public class ProductService {
         return savedProduct;
     }
 
-    public Product editProduct(SaveProductDto productDto, Long id) {
+    public Product editProduct(SaveProductDto productDto, UUID id) {
 
         Product oldProduct = productRepository.findById(id).orElse(null);
         if(oldProduct == null){
@@ -38,7 +40,7 @@ public class ProductService {
         return oldProduct;
     }
 
-    public Boolean delete(Long id){
+    public Boolean delete(UUID id){
         Boolean exists = productRepository.existsById(id);
         if(exists) {
             productRepository.deleteById(id);

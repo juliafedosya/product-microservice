@@ -13,6 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.UUID;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -25,7 +27,7 @@ class ProductControllerTest {
     public static final String MAIN_ENDPOINT = "/product/";
     public static final String PRODUCT_NAME = "chesnok";
     public static final String MEASURE_UNIT = "zubchik";
-    public static final Long RANDOM_ID = (long) 12;
+    public static final UUID RANDOM_ID = UUID.randomUUID();
 
 
     @Autowired

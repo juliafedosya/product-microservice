@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 
 @RestController
 @RequestMapping(value = "/product")
@@ -16,7 +18,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable UUID id) {
         Product product = productService.findById(id);
         if(product == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

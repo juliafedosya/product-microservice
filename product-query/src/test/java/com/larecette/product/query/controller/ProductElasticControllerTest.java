@@ -1,7 +1,7 @@
 package com.larecette.product.query.controller;
 
-import com.larecette.product.query.model.Product;
-import com.larecette.product.query.service.ProductService;
+import com.larecette.product.query.model.ProductSpanner;
+import com.larecette.product.query.service.impl.ProductServiceSpanner;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-class ProductControllerTest {
+class ProductElasticControllerTest {
 
     public static final String PRODUCT_NAME = "chesnok";
     public static final String MEASURE_UNIT = "zubchik";
@@ -26,14 +26,14 @@ class ProductControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private ProductService productService;
+    private ProductServiceSpanner productService;
 
     @Test
     void shouldReturnProductAnd200() throws Exception {
-        Product product = new Product(2.0,0.0,0.0,8,PRODUCT_NAME,MEASURE_UNIT, RANDOM_ID);
-        Mockito.when(productService.findById(product.getId()))
-                .thenReturn(product);
-        this.mockMvc.perform(get("/product/" + product.getId()))
+        ProductSpanner productSpanner = new ProductSpanner(2.0,0.0,0.0,8,PRODUCT_NAME,MEASURE_UNIT, RANDOM_ID);
+        Mockito.when(productService.findById(productSpanner.getId()))
+                .thenReturn(productSpanner);
+        this.mockMvc.perform(get("/product/" + productSpanner.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(PRODUCT_NAME))).andExpect(content().string(containsString(MEASURE_UNIT)));
@@ -41,10 +41,10 @@ class ProductControllerTest {
 
     @Test
     void shouldReturn404() throws Exception {
-        Product product = new Product(2.0,0.0,0.0,8,PRODUCT_NAME,MEASURE_UNIT, RANDOM_ID);
-        Mockito.when(productService.findById(product.getId()))
+        ProductSpanner productSpanner = new ProductSpanner(2.0,0.0,0.0,8,PRODUCT_NAME,MEASURE_UNIT, RANDOM_ID);
+        Mockito.when(productService.findById(productSpanner.getId()))
                 .thenReturn(null);
-        this.mockMvc.perform(get("/product/" + product.getId()))
+        this.mockMvc.perform(get("/product/" + productSpanner.getId()))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }
